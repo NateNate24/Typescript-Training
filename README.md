@@ -1,2 +1,2 @@
 # Typescript-Training
-Typescript training sessions for App team
+Vitro App team Typescript training sessions

@@ -1,11 +1,55 @@
 "use strict";
-var HellowWorld = /** @class */ (function () {
-    function HellowWorld(message) {
-        this.message = message;
+function GetAllBooks() {
+    var books = [
+        { title: "Ulysses", author: "James Joyce", available: true, category: Category.Fiction },
+        { title: "A farewell to Arms", author: "Ernest Hemingway", available: false, category: Category.Fiction },
+        { title: "I Know Why the Caged Birds Sing", author: "Maya Angelou", available: true, category: Category.Poetry },
+        { title: "Moby Dick", author: "Herman Melville", available: true, category: Category.Fiction }
+    ];
+    return books;
+}
+function LogFirstAvailable(books) {
+    var numberOfBooks = books.length;
+    var firstAvailable = '';
+    for (var _i = 0, books_1 = books; _i < books_1.length; _i++) {
+        var currentBook = books_1[_i];
+        if (currentBook.available) {
+            firstAvailable = currentBook.title;
+            break;
+        }
     }
-    return HellowWorld;
-}());
-var hello = new HellowWorld('Hello 1 Typescript');
-console.log(hello.message);
-console.log('Welcome VS Code');
+    console.log('Total Books: ' + numberOfBooks);
+    console.log('First Available: ' + firstAvailable);
+}
+var Category;
+(function (Category) {
+    Category[Category["Biography"] = 0] = "Biography";
+    Category[Category["Poetry"] = 1] = "Poetry";
+    Category[Category["Fiction"] = 2] = "Fiction";
+    Category[Category["History"] = 3] = "History";
+    Category[Category["Children"] = 4] = "Children";
+})(Category || (Category = {}));
+;
+function GetBookTitlesByCategory(categoryFilter) {
+    console.log('Getting books in category: ' + Category[categoryFilter]);
+    var AllBooks = GetAllBooks();
+    var filteredTitles = [];
+    for (var _i = 0, AllBooks_1 = AllBooks; _i < AllBooks_1.length; _i++) {
+        var currentBook = AllBooks_1[_i];
+        if (currentBook.category === categoryFilter) {
+            filteredTitles.push(currentBook.title);
+        }
+    }
+    return filteredTitles;
+}
+function LogBookTitles(titles) {
+    for (var _i = 0, titles_1 = titles; _i < titles_1.length; _i++) {
+        var title = titles_1[_i];
+        console.log(title);
+    }
+}
+var poetryBooks = GetBookTitlesByCategory(Category.Poetry);
+LogBookTitles(poetryBooks);
+// const allBooks = GetAllBooks();
+// LogFirstAvailable(allBooks);
 //# sourceMappingURL=app.js.map

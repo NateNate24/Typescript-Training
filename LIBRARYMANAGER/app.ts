@@ -1,4 +1,10 @@
-function GetAllBooks() {
+import {Category} from './enums';
+import {Book, DamageLogger, Author, Librarian} from './interfaces';
+import {UniversityLibrarian, ReferenceItem, Encyclopedia} from './classes';
+
+
+
+function GetAllBooks(): Book[] {
 
     let books = [
             { id: 1, title: "Ulysses", author: "James Joyce", available: true, category: Category.Fiction },
@@ -29,8 +35,6 @@ function LogFirstAvailable(books = GetAllBooks()): void {
 	console.log('First Available: ' + firstAvailable);
 }
 
-enum Category  {Biography, Poetry, Fiction, History, Children};
-
 function GetBookTitlesByCategory(categoryFilter: Category = Category.Fiction): Array<string> {
     console.log('Getting books in category: ' + Category[categoryFilter]);
 
@@ -53,7 +57,7 @@ function LogBookTitles(titles: string[]): void{
     }
 }
 
-function GetBookByID(id: number) {
+function GetBookByID(id: number): Book {
     const allBooks = GetAllBooks();
     return allBooks.filter(book => book.id === id)[0];
 
@@ -116,28 +120,34 @@ function GetTitles(bookProperty: any): string[] {
 }
 
 let hermanBooks = GetTitles(false);
-hermanBooks.forEach(title => console.log(title))
+hermanBooks.forEach(title => console.log(title));
 
-// let myBooks: string[] = CheckoutBooks('Thorne', 1);
-// myBooks.forEach(title => console.log(title));
 
-// LogFirstAvailable();
-// let fictionBooks = GetBookTitlesByCategory();
-// fictionBooks.forEach(title => console.log(title));
+function PrintBook(book: Book): void {
+    console.log(book.title + ' by ' + book.author);
+}
 
-// CreateCustomer('Michelle');
-// CreateCustomer('Leigh', 6);
-// CreateCustomer('Marie', 12, 'Atlanta');
+// let ref: ReferenceItem = new ReferenceItem('Updated Facts and Figures', 2012);
+// ref.printItem();
+// ref.publisher = 'Random Data Publishing';
+// console.log(ref.publisher);
 
-// let x: number;
-// x= 5;
+// let refBook: ReferenceItem = new Encyclopedia('WorldPedia', 1900, 10);
+// refBook.printCitation();
 
-// let IdGenerator: (chars: string, nums: number) => string;
-// IdGenerator = CreateCustomerID;
+let Newspaper = class extends ReferenceItem {
+    printCitation(): void {
+        console.log(`Newspaper: ${this.title}`);
+    }
 
-// let myID: string = IdGenerator('daniel', 15);
-// console.log(myID);
+}
 
-// const fictionBooks = GetBookTitlesByCategory(Category.Fiction);
-// fictionBooks.forEach((val, idx, arr) => {console.log(++idx + ' - ' + val)});
+let myPaper = new Newspaper('The Gazette', 2016);
+myPaper.printCitation();
 
+class Novel extends class {title!: string} {
+    mainCharacter!: string;
+}
+
+let favoriteNovel = new Novel();
+favoriteNovel.mainCharacter;

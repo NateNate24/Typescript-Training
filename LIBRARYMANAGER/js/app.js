@@ -1,10 +1,26 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var enums_1 = require("./enums");
+var classes_1 = require("./classes");
 function GetAllBooks() {
     var books = [
-        { id: 1, title: "Ulysses", author: "James Joyce", available: true, category: Category.Fiction },
-        { id: 2, title: "A farewell to Arms", author: "Ernest Hemingway", available: false, category: Category.Fiction },
-        { id: 3, title: "I Know Why the Caged Birds Sing", author: "Maya Angelou", available: true, category: Category.Poetry },
-        { id: 4, title: "Moby Dick", author: "Herman Melville", available: true, category: Category.Fiction }
+        { id: 1, title: "Ulysses", author: "James Joyce", available: true, category: enums_1.Category.Fiction },
+        { id: 2, title: "A farewell to Arms", author: "Ernest Hemingway", available: false, category: enums_1.Category.Fiction },
+        { id: 3, title: "I Know Why the Caged Birds Sing", author: "Maya Angelou", available: true, category: enums_1.Category.Poetry },
+        { id: 4, title: "Moby Dick", author: "Herman Melville", available: true, category: enums_1.Category.Fiction }
     ];
     return books;
 }
@@ -22,18 +38,9 @@ function LogFirstAvailable(books) {
     console.log('Total Books: ' + numberOfBooks);
     console.log('First Available: ' + firstAvailable);
 }
-var Category;
-(function (Category) {
-    Category[Category["Biography"] = 0] = "Biography";
-    Category[Category["Poetry"] = 1] = "Poetry";
-    Category[Category["Fiction"] = 2] = "Fiction";
-    Category[Category["History"] = 3] = "History";
-    Category[Category["Children"] = 4] = "Children";
-})(Category || (Category = {}));
-;
 function GetBookTitlesByCategory(categoryFilter) {
-    if (categoryFilter === void 0) { categoryFilter = Category.Fiction; }
-    console.log('Getting books in category: ' + Category[categoryFilter]);
+    if (categoryFilter === void 0) { categoryFilter = enums_1.Category.Fiction; }
+    console.log('Getting books in category: ' + enums_1.Category[categoryFilter]);
     var AllBooks = GetAllBooks();
     var filteredTitles = [];
     for (var _i = 0, AllBooks_1 = AllBooks; _i < AllBooks_1.length; _i++) {
@@ -107,20 +114,38 @@ function GetTitles(bookProperty) {
 }
 var hermanBooks = GetTitles(false);
 hermanBooks.forEach(function (title) { return console.log(title); });
-// let myBooks: string[] = CheckoutBooks('Thorne', 1);
-// myBooks.forEach(title => console.log(title));
-// LogFirstAvailable();
-// let fictionBooks = GetBookTitlesByCategory();
-// fictionBooks.forEach(title => console.log(title));
-// CreateCustomer('Michelle');
-// CreateCustomer('Leigh', 6);
-// CreateCustomer('Marie', 12, 'Atlanta');
-// let x: number;
-// x= 5;
-// let IdGenerator: (chars: string, nums: number) => string;
-// IdGenerator = CreateCustomerID;
-// let myID: string = IdGenerator('daniel', 15);
-// console.log(myID);
-// const fictionBooks = GetBookTitlesByCategory(Category.Fiction);
-// fictionBooks.forEach((val, idx, arr) => {console.log(++idx + ' - ' + val)});
+function PrintBook(book) {
+    console.log(book.title + ' by ' + book.author);
+}
+// let ref: ReferenceItem = new ReferenceItem('Updated Facts and Figures', 2012);
+// ref.printItem();
+// ref.publisher = 'Random Data Publishing';
+// console.log(ref.publisher);
+// let refBook: ReferenceItem = new Encyclopedia('WorldPedia', 1900, 10);
+// refBook.printCitation();
+var Newspaper = /** @class */ (function (_super) {
+    __extends(class_1, _super);
+    function class_1() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    class_1.prototype.printCitation = function () {
+        console.log("Newspaper: " + this.title);
+    };
+    return class_1;
+}(classes_1.ReferenceItem));
+var myPaper = new Newspaper('The Gazette', 2016);
+myPaper.printCitation();
+var Novel = /** @class */ (function (_super) {
+    __extends(Novel, _super);
+    function Novel() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return Novel;
+}(/** @class */ (function () {
+    function class_2() {
+    }
+    return class_2;
+}())));
+var favoriteNovel = new Novel();
+favoriteNovel.mainCharacter;
 //# sourceMappingURL=app.js.map

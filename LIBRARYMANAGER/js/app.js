@@ -1,6 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var enums_1 = require("./enums");
+var shelf_1 = __importDefault(require("./shelf"));
 function GetAllBooks() {
     var books = [
         { id: 1, title: 'Ulysses', author: 'James Joyce', available: true, category: enums_1.Category.Fiction },
@@ -102,4 +106,30 @@ function PrintBook(book) {
     console.log(book.title + ' by ' + book.author);
 }
 //*********************************************
+var inventory = [
+    { id: 10, title: 'The C Programming Language', author: 'K & R', available: true, category: enums_1.Category.Software },
+    { id: 11, title: 'Code Complete', author: 'Steve McConnell', available: true, category: enums_1.Category.Software },
+    { id: 12, title: '8-Bit Graphics with Cobol', author: 'A. B.', available: true, category: enums_1.Category.Software },
+    { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: enums_1.Category.Software }
+];
+// let purgedBooks: Array<Book> = Purge(inventory);
+// purgedBooks.forEach(book => console.log(book.title));
+// let purgedNums: Array<number> = Purge<number>([1, 2, 3, 4]);
+// console.log(purgedNums);
+var bookShelf = new shelf_1.default();
+inventory.forEach(function (book) { return bookShelf.add(book); });
+var firstBook = bookShelf.getFirst();
+var magazines = [
+    { title: 'Programming Language Monthly', publisher: 'Code Mags' },
+    { title: 'Literary Fiction Quarterly', publisher: 'College Press' },
+    { title: 'Five Points', publisher: 'GSU' }
+];
+var magazineShelf = new shelf_1.default();
+magazines.forEach(function (mag) { return magazineShelf.add(mag); });
+var firstMagazine = magazineShelf.getFirst();
+// let numberShelf: Shelf<number> = new Shelf<number>();
+// [5, 10, 15].forEach(num => numberShelf.add(num));
+magazineShelf.printTitles();
+var softwareBook = bookShelf.find('Code Complete');
+console.log(softwareBook.title + " (" + softwareBook.author + ")");
 //# sourceMappingURL=app.js.map

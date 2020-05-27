@@ -2,6 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var UniversityLibrarian = /** @class */ (function () {
     function UniversityLibrarian() {
+        this.name = "";
+        this.email = "";
+        this.department = "";
     }
     UniversityLibrarian.prototype.assistCustomer = function (custName) {
         console.log(this.name + ' is assisting ' + custName);
@@ -13,6 +16,7 @@ var ReferenceItem = /** @class */ (function () {
     function ReferenceItem(title, year) {
         this.title = title;
         this.year = year;
+        this._publisher = "";
         console.log('Creating a new ReferenceItem...');
     }
     ReferenceItem.prototype.printItem = function () {

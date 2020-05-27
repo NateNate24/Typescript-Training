@@ -2,9 +2,9 @@ import * as Interfaces from './interfaces';
 
 class UniversityLibrarian implements Interfaces.Librarian {
     
-    name!: string;
-    email!: string;
-    department!: string;
+    name: string ="";
+    email: string = "";
+    department: string = "";
     
     assistCustomer(custName: string) {
         console.log(this.name + ' is assisting ' + custName);
@@ -13,7 +13,7 @@ class UniversityLibrarian implements Interfaces.Librarian {
 
 abstract class ReferenceItem {
     
-    private _publisher!: string;
+    private _publisher: string = "";
     static department: string = 'Research';
 
     constructor(public title: string, protected year: number) {
